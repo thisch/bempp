@@ -9,6 +9,7 @@ matrix:
 before_install:
   - sudo apt-get update
   - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran
+  # TODO use conda instead
   - if [[ "${TEST_MATPLOTLIB}" == "true" ]]; then
       pip install "numpy==1.9.1";
       pip install --allow-external "matplotlib==1.4.0";
