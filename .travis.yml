@@ -8,7 +8,7 @@ python:
 #         - TEST_MATPLOTLIB="true"
 before_install:
   - sudo apt-get update
-  - sudo add-apt-repository ppa:kalakris/cmake
+  - echo "yes" | sudo add-apt-repository ppa:kalakris/cmake
   - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran cmake
   - cmake --version
 
