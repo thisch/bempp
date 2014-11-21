@@ -9,11 +9,12 @@ python:
 before_install:
   - sudo apt-get update
   - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran
-  - sudo apt-get install -qq python3-sphinx cython3
+  - sudo apt-get install -qq python-sphinx
   # TODO use conda instead
   - pip install "numpy==1.9.1"
   - pip install --allow-external "matplotlib==1.4.0"
   - pip install "mako"
+  - pip install "cython"
   - mkdir build
   - cd build
   - cmake ..
