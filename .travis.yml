@@ -7,9 +7,15 @@ python:
 #       env:
 #         - TEST_MATPLOTLIB="true"
 before_install:
-  - echo "yes" | sudo add-apt-repository ppa:kalakris/cmake
+  - sudo add-apt-repository -y ppa:kalakris/cmake
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
-  - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran cmake
+
+install:
+  - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran cmake g++-4.8
+
+  - export CXX="g++-4.8"
+  - g++ --version
   - cmake --version
 
   # You may want to periodically update this, although the conda update
@@ -37,7 +43,6 @@ before_install:
 
   - mkdir build
   - cd build
-  # - cmake -DCMAKE_VERBOSE_MAKEFILE=1 ..
   - cmake ..
   - make
 notifications:
