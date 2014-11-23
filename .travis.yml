@@ -37,7 +37,8 @@ before_install:
 
   - mkdir build
   - cd build
-  - cmake -DCMAKE_VERBOSE_MAKEFILE=1 ..
+  # - cmake -DCMAKE_VERBOSE_MAKEFILE=1 ..
+  - cmake ..
   - make
 notifications:
   email: false

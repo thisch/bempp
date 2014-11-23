@@ -129,6 +129,7 @@ ExternalProject_Add(
                -DTpetra_INST_FLOAT:BOOL=ON
                -DTPL_ENABLE_MPI:BOOL=${WITH_MPI}
                -DCMAKE_BUILD_TYPE=${Trilinos_BUILD_TYPE}
+               -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
                -DTrilinos_ENABLE_PyTrilinos:BOOL=${WITH_PYTHON}
                -C ${EXTERNAL_ROOT}/src/TrilinosVariables.cmake
     PATCH_COMMAND ${patch_script}
