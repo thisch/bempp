@@ -82,7 +82,8 @@ def bootstrap(root,config):
     checkCreateDir(dep_build_dir)
     dep_download_dir=config.get('Main','dependency_download_dir')
     checkCreateDir(dep_download_dir)
-    bempp_build_dir=config.get('Bempp','build_dir')
+    bempp_build_dir=os.path.expandvars(config.get('Main','build_dir'))
+    print("bempp build_dir %s"  % bempp_build_dir)
     checkCreateDir(bempp_build_dir)
 
     checkCreateDir(prefix+"/bempp")
@@ -140,7 +141,7 @@ def prepare(root,config):
 
     # Retrieve build directory
     setDefaultConfigOption(config,'Main','build_dir',root+'/build')
-    build_dir = normalizePath(config, config.get('Main','build_dir'))
+    build_dir = normalizePath(config, os.path.expandvars(config.get('Main','build_dir')))
     # Set build directories for BEM++ and its dependencies
     config.set('Main','build_dir',build_dir)
     config.set('Bempp','build_dir',build_dir+'/bempp')
@@ -168,9 +169,6 @@ def prepare(root,config):
 	        config.set('Main','cxxflags',cxxflags+" -I"+mpi_include_dir)
     else:
         config.set('MPI','with_mpi','OFF')
-
- 
-
 
     # Set empty BLAS/Lapack options if none exist
     setDefaultConfigOption(config,'BLAS','lib',"")
@@ -251,7 +249,7 @@ if __name__ == "__main__":
         optfile_full = os.path.abspath(os.path.expanduser(optfile))
         tools.setDefaultConfigOption(config,'Main','optfile',
                                      optfile_full,overwrite=True)
-        prefix = normalizePath(config, config.get('Main','prefix'))
+        prefix = normalizePath(config, os.path.expandvars(config.get('Main','prefix')))
         tools.setDefaultConfigOption(config,'Main','prefix',prefix,
                                      overwrite=True)
     except Exception, e:
